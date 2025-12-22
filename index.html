@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日快乐</title>
+    <style>
+        /* 页面基础样式 */
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-color: #f0f8ff;
+            overflow: hidden; /* 防止滚动条出现 */
+            font-family: "微软雅黑", sans-serif;
+        }
+
+        /* 欢迎文本样式 */
+        .welcome {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 37px;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        /* emoji 基础样式（初始隐藏） */
+        .emoji {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0; /* 初始透明 */
+            bottom: -100px; /* 初始在页面外 */
+            animation: popUp 3s ease-out forwards; /* 绑定弹出动画 */
+            pointer-events: none; /* 防止遮挡鼠标 */
+        }
+
+        /* emoji 弹出动画：向上飘 + 渐变显示 + 轻微旋转 */
+        @keyframes popUp {
+            0% {
+                opacity: 0;
+                bottom: -100px;
+                transform: rotate(0deg);
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                bottom: 100vh; /* 飘到页面顶部外 */
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome">🫜姐生日快乐！<br>생일 축하해!<br>¡Feliz cumple!<br>sang nyik kho huah!</div>
+
+    <script>
+        // 定义要弹出的emoji列表
+        const emojiList = ['🎉', '🥳', '✨', '🌟', '🎊', '💩', '💩', '🎆'];
+        
+        // 网页加载完成后执行
+        window.onload = function() {
+            // 循环创建多个emoji（数量可改，比如20个）
+            for (let i = 0; i < 60; i++) {
+                // 随机延迟（0-3秒），让emoji分批弹出
+                setTimeout(() => {
+                    createEmoji();
+                }, Math.random() * 3000);
+            }
+        };
+
+        // 创建单个emoji元素的函数
+        function createEmoji() {
+            // 1. 创建新的div元素
+            const emoji = document.createElement('div');
+            emoji.className = 'emoji';
+            
+            // 2. 随机选一个emoji
+            const randomEmoji = emojiList[Math.floor(Math.random() * emojiList.length)];
+            emoji.textContent = randomEmoji;
+            
+            // 3. 随机位置（水平方向：0-100%）
+            const randomLeft = Math.random() * 100;
+            emoji.style.left = `${randomLeft}%`;
+            
+            // 4. 随机动画时长（2-5秒）
+            const randomDuration = 4 + Math.random() * 3;
+            emoji.style.animationDuration = `${randomDuration}s`;
+            
+            // 5. 添加到页面
+            document.body.appendChild(emoji);
+            
+            // 6. 动画结束后删除元素（避免占用内存）
+            setTimeout(() => {
+                emoji.remove();
+            }, randomDuration * 1000);
+        }
+    </script>
+</body>
+</html>
