@@ -13,6 +13,12 @@
             background-color: #f0f8ff;
             overflow: hidden; /* 防止滚动条出现 */
             font-family: "微软雅黑", sans-serif;
+            background-image: url('1.jpg');   /* 背景图路径 */
+            background-size: cover;            /* 铺满整个页面，不变形 */
+            background-position: center;       /* 图片居中 */
+            background-repeat: no-repeat;      /* 不重复平铺 */
+            background-attachment: fixed;      /* 滚动时背景固定 */
+            background-color: #f0f8ff;         /* 图片加载失败时的兜底颜色 */
         }
 
         /* 欢迎文本样式 */
@@ -62,7 +68,7 @@
 
     <script>
         // 定义要弹出的emoji列表
-        const emojiList = ['🎉', '🥳', '✨', '🌟', '🎊', '💩', '💩', '🎆'];
+        const emojiList = ['🎉', '💘', '✨', '🌟', '💞', '😍', '😘', '🎆','💖','💕'];
         
         // 网页加载完成后执行
         window.onload = function() {
